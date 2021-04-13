@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     public Player Instance;
     public AudioSource Audio_PassBlock;
     public Animator ani;
+    public GameManager gm;
     private Rigidbody2D rb;
     private Vector2 jumpForce;
     private Vector2 playerInitPosition;
@@ -47,6 +48,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(Instance.isStart);
         if (Input.anyKeyDown && !Instance.isStart)
         {
             GameStart();
@@ -99,6 +101,7 @@ public class PlayerControl : MonoBehaviour
         ShowScoreBoard();
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Instance.isDead = true;
+        gm.StopAllCoroutines();
     }
 
     private void ShowScoreBoard()

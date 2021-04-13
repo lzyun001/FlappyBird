@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
 
     private float blockSpwanPosition;
     private float blockNumber;
+    public IEnumerator coroutine;
+
     private void Awake()
     {
+        coroutine = SpawnBlock();
         Init();
-        StartCoroutine(SpawnBlock());
     }
 
     private void Init()
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
         Instantiate(block, new Vector2(9, Random.Range(-6, 7)), Quaternion.identity);
         blockNumber = 2;
         blockSpwanPosition = 18f;
+        StartCoroutine(coroutine);
     }
     private IEnumerator SpawnBlock()
     {
@@ -30,10 +33,9 @@ public class GameManager : MonoBehaviour
             blockNumber++;
             blockSpwanPosition += 9f;
             yield return new WaitForSeconds(1f);
-            if (blockNumber >= 50)
+            if (blockNumber >= 1000)
             {
                 DestroyBlocks();
-               
             }
         }
     }
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void DestroyBlocks()
     {
         GameObject[] obstacle = GameObject.FindGameObjectsWithTag("Obstacle");
-        for (int i = 0; i < obstacle.Length - 25; i++)
+        for (int i = 0; i < 1; i++)
         {
             Destroy(obstacle[i]);
             blockNumber--;
