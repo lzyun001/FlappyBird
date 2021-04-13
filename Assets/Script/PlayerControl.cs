@@ -54,7 +54,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Instance.isStart && !Instance.isDead)
         {
-            gameObject.transform.Translate(new Vector2(0.1f, 0));
+            gameObject.transform.Translate(new Vector2(0.08f, 0));
             if (Input.anyKeyDown)
             {
                 rb.AddForce(jumpForce);
